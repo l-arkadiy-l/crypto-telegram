@@ -42,7 +42,6 @@ def get_price(coin):
     link = f'https://cryptorank.io/price/{coin}'
     response = requests.get(link, headers=header)
     soup = bf(response.content, 'lxml')
-    print(soup)
     block = soup.find('div', attrs={'class': 'sc-8369f605-1 ceYCfg'})
     price = block.find('div', attrs={'class': 'sc-c366a7c4-0 gAvwjX'}).get_text()
     low_and_hight = block.find('div', attrs={'class': 'information'}).find_all('p')
