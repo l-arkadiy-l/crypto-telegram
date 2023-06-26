@@ -13,7 +13,8 @@ def get_info_image(coin, price, low_price, high_price, precent):
     arrow_up = Image.open('images/arrow_up.png')
     arrow_down = Image.open('images/arrow_up.png')
     arrow_precent = Image.open('images/arrow_up.png')
-    arrow_down = arrow_down.rotate(270)
+    arrow_up = arrow_up.rotate(45)
+    arrow_down = arrow_down.rotate(180 + 45)
     arrow_precent = arrow_precent.rotate(270 if precent[0] == '-' else 0)
     # group images
     background.paste(currency, (30, 30))
@@ -36,11 +37,16 @@ def get_info_image(coin, price, low_price, high_price, precent):
     background.save('images/new.png', quality=100)
 
 
-def get_price(coin):
+def get_response(coin):
     user = fake_useragent.UserAgent().random
     header = {'User-Agent': user}
     link = f'https://cryptorank.io/price/{coin}'
     response = requests.get(link, headers=header)
+    return response
+
+
+def get_price(coin):
+    response = get_response(coin)
     soup = bf(response.content, 'lxml')
     block = soup.find('div', attrs={'class': 'sc-8369f605-1 ceYCfg'})
     price = block.find('div', attrs={'class': 'sc-c366a7c4-0 gAvwjX'}).get_text()
@@ -60,7 +66,3 @@ def get_price(coin):
         shutil.copyfileobj(response_img.raw, out_file)
     del response_img
     get_info_image(coin, price, low_price, high_price, precent)
-
-
-if __name__ == '__main__':
-    get_price('render-token')
