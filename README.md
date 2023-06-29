@@ -1,4 +1,4 @@
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=34&pause=1000&color=F7CE37&width=435&lines=Crypto+hand+project)](https://git.io/typing-svg)
+# Crypto hand project
 ![img](https://i.ibb.co/p098ZGq/photo-2023-06-23-13-09-41.jpg)
 
 ## ```What the purpose of this bot?```
@@ -30,5 +30,5 @@ bot = telebot.TeleBot(TOKEN)
 3. Run ```bot.py``` file
 ## ```All links:```
 - ### [Current design (you can offer your own design)🎨](https://www.figma.com/file/ukSP82PqNmDyt3CAz2cQXs/crypto-project?type=design&node-id=0%3A1&mode=design&t=xXpiAYWumHv17oaO-1)
-- ### [Link to bot🤖](https://t.me/my_ananas_bot)
+- ### [Link to bot🤖](https://t.me/Crypto_hand_bot)
 
