@@ -11,7 +11,6 @@ def get_info_image(coin, price, low_price, high_price, precent):
     background = Image.open('images/Screenshot_191.png')
     currency = Image.open('images/coin.png')
     currency = currency.resize((150, 150))
-    currency.save('mom.png')
     arrow_up = Image.open('images/arrow_up.png')
     arrow_down = Image.open('images/arrow_up.png')
     arrow_precent = Image.open('images/arrow_up.png')
