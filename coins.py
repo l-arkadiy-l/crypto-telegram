@@ -10,6 +10,8 @@ def get_info_image(coin, price, low_price, high_price, precent):
     # TODO: добавить, что это статистика за (1 day)
     background = Image.open('images/Screenshot_191.png')
     currency = Image.open('images/coin.png')
+    currency = currency.resize((150, 150))
+    currency.save('mom.png')
     arrow_up = Image.open('images/arrow_up.png')
     arrow_down = Image.open('images/arrow_up.png')
     arrow_precent = Image.open('images/arrow_up.png')
@@ -48,19 +50,19 @@ def get_response(coin):
 def get_price(coin):
     response = get_response(coin)
     soup = bf(response.content, 'lxml')
-    block = soup.find('div', attrs={'class': 'sc-8369f605-1 ceYCfg'})
-    price = block.find('div', attrs={'class': 'sc-c366a7c4-0 gAvwjX'}).get_text()
-    low_and_hight = block.find('div', attrs={'class': 'information'}).find_all('p')
-    low_price = low_and_hight[-1].get_text()
-    high_price = low_and_hight[0].get_text()
+    block = soup.find('div', attrs={'class': 'sc-e0144663-0 sc-e7ec9bd4-1 sc-e7ec9bd4-2 LRHyK cRehzu kNMiBn'})
+    price = block.find('div', attrs={'class': 'sc-3aa4b0ee-0 efWIrn'}).get_text()
+    low_and_hight = block.find('div', attrs={'class': 'sc-8e51773e-0 jmMmMa'}).find_all('span')
+    low_price = low_and_hight[0].get_text()
+    high_price = low_and_hight[-1].get_text()
     # differents classes for up and down prices
     try:
-        precent = block.find('span', attrs={'class': 'sc-ce9abdd0-0 cIgbZX percent'}).get_text()
+        precent = block.find('span', attrs={'class': 'sc-130f0f3b-0 sc-656de74e-0 LoHZF aivvi'}).get_text()
     except AttributeError:
-        precent = block.find('span', attrs={'class': 'sc-ce9abdd0-0 cnvycl percent'}).get_text()
+        precent = '-' + block.find('span', attrs={'class': 'sc-130f0f3b-0 sc-656de74e-0 LoHZF evjDUQ'}).get_text()
 
     # get image coin
-    logo_coin = block.find('img', attrs={'class': 'coin-logo'})['src']
+    logo_coin = block.find('img', attrs={'class': 'sc-15f3cf17-0 gHAhoh'})['src']
     response_img = requests.get(logo_coin, stream=True)
     with open('images/coin.png', 'wb') as out_file:
         shutil.copyfileobj(response_img.raw, out_file)
